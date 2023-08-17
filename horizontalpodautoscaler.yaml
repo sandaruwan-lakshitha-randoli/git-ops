@@ -1,0 +1,25 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+    name: appdir-359dcd16-spring-app-03-deployment-uat-hpa-controller
+    namespace: test-hpa
+spec:
+    maxReplicas: 4
+    metrics:
+        - resource:
+            name: cpu
+            target:
+                averageUtilization: 60
+                type: Utilization
+          type: Resource
+        - resource:
+            name: memory
+            target:
+                averageValue: 400Mi
+                type: AverageValue
+          type: Resource
+    minReplicas: 2
+    scaleTargetRef:
+        apiVersion: apps/v1
+        kind: Deployment
+        name: appdir-359dcd16-spring-app-03-deployment-uat
