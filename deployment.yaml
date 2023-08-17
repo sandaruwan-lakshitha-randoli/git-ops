@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    annotations: {}
+    labels:
+        app: spring-app-03
+        app-id: 9046e824-794f-467b-be48-a366694ffc54
+        cluster-agent-id: 359dcd16-4ecd-422f-9710-f748c9700565
+        cluster-agent-name: sandaruwan-kind-agent
+        environment-id: 4d197f83-65ca-4ece-b053-76176b333246
+        environment-name: uat
+        metadata-1: YUBhLmE
+        organization-id: 7b000cea-2f5e-4479-879a-771a5337d1c9
+        product: app-director
+        project-id: 83b8c608-2a48-4703-981f-ed3ee4879a6a
+    name: appdir-359dcd16-spring-app-03-deployment-uat
+    namespace: test-hpa
+spec:
+    replicas: 1
+    revisionHistoryLimit: 1
+    selector:
+        matchLabels:
+            app-id: 9046e824-794f-467b-be48-a366694ffc54
+            cluster-agent-id: 359dcd16-4ecd-422f-9710-f748c9700565
+            environment-id: 4d197f83-65ca-4ece-b053-76176b333246
+            environment-name: uat
+    strategy:
+        rollingUpdate:
+            maxSurge: 25%
+            maxUnavailable: 25%
+        type: RollingUpdate
+    template:
+        metadata:
+            annotations: {}
+            labels:
+                app: spring-app-03
+                app-id: 9046e824-794f-467b-be48-a366694ffc54
+                cluster-agent-id: 359dcd16-4ecd-422f-9710-f748c9700565
+                cluster-agent-name: sandaruwan-kind-agent
+                environment-id: 4d197f83-65ca-4ece-b053-76176b333246
+                environment-name: uat
+                metadata-1: YUBhLmE
+                organization-id: 7b000cea-2f5e-4479-879a-771a5337d1c9
+                product: app-director
+                project-id: 83b8c608-2a48-4703-981f-ed3ee4879a6a
+        spec:
+            containers:
+                - envFrom: []
+                  image: docker.io/sandaruwan1randoli/spring-app:uat
+                  imagePullPolicy: Always
+                  name: appdir-359dcd16-spring-app-03
+                  ports:
+                    - containerPort: 8080
+                      protocol: TCP
+                  resources:
+                    limits:
+                        cpu: 200m
+                        memory: 500Mi
+                    requests:
+                        cpu: 200m
+                        memory: 500Mi
+                  securityContext:
+                    privileged: false
+                  terminationMessagePath: /dev/termination-log
+                  terminationMessagePolicy: File
+                  volumeMounts: []
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            serviceAccountName: spring-app-03-sa-uat
+            terminationGracePeriodSeconds: 30
+            volumes: []
+status: {}
