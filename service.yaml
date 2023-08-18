@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+    annotations: {}
+    labels:
+        app: spring-app-03
+        app-id: 02945efb-c860-47bc-af81-83bf6a363bec
+        cluster-agent-id: eec05f81-37ad-4606-ab8f-c2d4bb13947c
+        cluster-agent-name: openshift-sanda-agent
+        environment-id: 6c02845e-a022-442b-a4ce-4d734398e069
+        environment-name: open-shift
+        metadata-1: c2FuZGFydXdhbi5sYWtzaGl0aGFAcmFuZG9saS5jYQ
+        organization-id: 7b000cea-2f5e-4479-879a-771a5337d1c9
+        product: app-director
+        project-id: 83b8c608-2a48-4703-981f-ed3ee4879a6a
+    name: spring-app-03-open-shift-service0
+    namespace: app-namespace
+spec:
+    ports:
+        - name: spring-app-03-open-shift-service0-1
+          port: 9000
+          protocol: TCP
+          targetPort: 8080
+    selector:
+        app-id: 02945efb-c860-47bc-af81-83bf6a363bec
+        cluster-agent-id: eec05f81-37ad-4606-ab8f-c2d4bb13947c
+        environment-id: 6c02845e-a022-442b-a4ce-4d734398e069
+    sessionAffinity: None
+    type: ClusterIP
+status:
+    loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+    annotations: {}
+    labels:
+        app: spring-app-03
+        app-id: 02945efb-c860-47bc-af81-83bf6a363bec
+        cluster-agent-id: eec05f81-37ad-4606-ab8f-c2d4bb13947c
+        cluster-agent-name: openshift-sanda-agent
+        environment-id: 6c02845e-a022-442b-a4ce-4d734398e069
+        environment-name: open-shift
+        metadata-1: c2FuZGFydXdhbi5sYWtzaGl0aGFAcmFuZG9saS5jYQ
+        organization-id: 7b000cea-2f5e-4479-879a-771a5337d1c9
+        product: app-director
+        project-id: 83b8c608-2a48-4703-981f-ed3ee4879a6a
+    name: spring-app-03-open-shift-service1
+    namespace: app-namespace
+spec:
+    ports:
+        - name: spring-app-03-open-shift-service1-1
+          port: 9001
+          protocol: TCP
+          targetPort: 8080
+    selector:
+        app-id: 02945efb-c860-47bc-af81-83bf6a363bec
+        cluster-agent-id: eec05f81-37ad-4606-ab8f-c2d4bb13947c
+        environment-id: 6c02845e-a022-442b-a4ce-4d734398e069
+    sessionAffinity: None
+    type: ClusterIP
+status:
+    loadBalancer: {}
