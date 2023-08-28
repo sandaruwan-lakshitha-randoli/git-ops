@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    annotations: {}
+    labels:
+        app: test-crd-logs
+        app-id: d3127bf3-fbf9-41c3-9ff9-835a7e6d9dfc
+        cluster-agent-id: 690c22a8-88fa-4081-8b50-685721b9f65a
+        cluster-agent-name: sandaruwan-dev-agent
+        environment-id: 81e1b887-3c00-417c-84aa-62122273d37e
+        environment-name: dev
+        metadata-1: YUBhLmE
+        organization-id: 33f0ebcd-517f-4fd6-aaae-d84772e3e079
+        product: app-director
+        project-id: 93941dc6-fb24-4839-872f-2d60ba3fe173
+    name: appdir-690c22a8-test-crd-logs-deployment-dev
+    namespace: sandaruwan-test
+spec:
+    replicas: 1
+    revisionHistoryLimit: 1
+    selector:
+        matchLabels:
+            app-id: d3127bf3-fbf9-41c3-9ff9-835a7e6d9dfc
+            cluster-agent-id: 690c22a8-88fa-4081-8b50-685721b9f65a
+            environment-id: 81e1b887-3c00-417c-84aa-62122273d37e
+            environment-name: dev
+    strategy:
+        rollingUpdate:
+            maxSurge: 25%
+            maxUnavailable: 25%
+        type: RollingUpdate
+    template:
+        metadata:
+            annotations: {}
+            labels:
+                app: test-crd-logs
+                app-id: d3127bf3-fbf9-41c3-9ff9-835a7e6d9dfc
+                cluster-agent-id: 690c22a8-88fa-4081-8b50-685721b9f65a
+                cluster-agent-name: sandaruwan-dev-agent
+                environment-id: 81e1b887-3c00-417c-84aa-62122273d37e
+                environment-name: dev
+                metadata-1: YUBhLmE
+                organization-id: 33f0ebcd-517f-4fd6-aaae-d84772e3e079
+                product: app-director
+                project-id: 93941dc6-fb24-4839-872f-2d60ba3fe173
+        spec:
+            containers:
+                - envFrom: []
+                  image: docker.io/sandaruwan1randoli/spring-app:uat
+                  imagePullPolicy: Always
+                  name: appdir-690c22a8-test-crd-logs
+                  ports:
+                    - containerPort: 8080
+                      protocol: TCP
+                  resources:
+                    limits:
+                        cpu: 100m
+                        memory: 256Mi
+                    requests:
+                        cpu: 100m
+                        memory: 256Mi
+                  securityContext:
+                    privileged: false
+                  terminationMessagePath: /dev/termination-log
+                  terminationMessagePolicy: File
+                  volumeMounts: []
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            serviceAccountName: test-crd-logs-sa-dev
+            terminationGracePeriodSeconds: 30
+            volumes: []
+status: {}
